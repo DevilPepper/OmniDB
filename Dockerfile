@@ -17,19 +17,13 @@ USER omnidb:omnidb
 ENV HOME /home/omnidb
 WORKDIR ${HOME}
 
-RUN wget https://github.com/OmniDB/OmniDB/archive/${OMNIDB_VERSION}.tar.gz \
-    && tar -xvzf ${OMNIDB_VERSION}.tar.gz \
-    && mv OmniDB-${OMNIDB_VERSION} OmniDB
+COPY . ${HOME}/OmniDB
 
 WORKDIR ${HOME}/OmniDB
 
 RUN pip install -r requirements.txt
 
 WORKDIR ${HOME}/OmniDB/OmniDB
-
-RUN sed -i "s/LISTENING_ADDRESS    = '127.0.0.1'/LISTENING_ADDRESS    = '0.0.0.0'/g" config.py \
-    && python omnidb-server.py --init \
-    && python omnidb-server.py --dropuser=admin
 
 CMD python omnidb-server.py
 
