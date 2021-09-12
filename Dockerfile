@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:latest as build
 
 LABEL maintainer="OmniDB team"
 
@@ -31,6 +31,10 @@ RUN sed -i "s/LISTENING_ADDRESS    = '127.0.0.1'/LISTENING_ADDRESS    = '0.0.0.0
     && python omnidb-server.py --init \
     && python omnidb-server.py --dropuser=admin
 
-EXPOSE 8000
-
 CMD python omnidb-server.py
+
+
+FROM build as test
+
+RUN set -ex
+RUN [ $(id -u vscode) = 1000 ]
