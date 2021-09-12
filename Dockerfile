@@ -21,7 +21,8 @@ COPY . ${HOME}/OmniDB
 
 WORKDIR ${HOME}/OmniDB
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt \
+    && mkdir ${HOME}/.omnidb
 
 WORKDIR ${HOME}/OmniDB/OmniDB
 
