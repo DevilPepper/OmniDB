@@ -1,7 +1,7 @@
-Django
+Django==3.2.7
 CherryPy
-social-auth-app-django
-django-auth-ldap
+social-auth-app-django==5.0.0
+django-auth-ldap==3.0.0
 pyscrypt
 pyaes
 openpyxl
@@ -12,4 +12,4 @@ cx_Oracle
 PyMySQL
 sqlparse
 pgspecial
-django-sass
+django-sass==1.1.0
