@@ -26,7 +26,7 @@ RUN pip install -r requirements.txt \
 
 WORKDIR ${HOME}/OmniDB/OmniDB
 
-CMD python omnidb-server.py
+CMD python omnidb-server.py -H ${OMNIDB_HOST:-0.0.0.0}
 
 
 FROM build as test
